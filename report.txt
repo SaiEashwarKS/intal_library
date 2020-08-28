@@ -1,0 +1,40 @@
+INTRODUCTION:
+    intal is a nonnegative integer of arbitrary length stored in the form of null terminated strings. It is different from integers in the sense that intals are strings and not numbers. So we cannot perform arithmetic functions directly.
+    In C, integers are stores as int data types, where the integers are converted to their binary form and stored in memory. intals, on the other hand are stored as strings. This has the advantage of storing varied magnitudes of numbers.
+    intals have the advantage of storing varied magnitude of numbers. Operations can be performed on each and every digit seperately.
+
+APPROACH:
+    intal_add : 
+        If the two intals are "0", "0" is returned. Otherwise, the longer intal is found out; the corresponding digits of the two intals are added and carry is stored to be added along with the digits. After we've considered all the digits of the smaller intal, the remaining digits of the bigger intal are added along with the carry and stored in result. If carry is 1 in the end, the leftmost character in the result is "1", otherwise "0". If the result has leading zeros, it is stripped of those zeros (using custom function) and thsi result is returned.
+    intal_compare :
+        First, the lenghts of the intals are checked and if intal1 is longer, 1 is returned and so on. If the lengths are equal, charcter by character comparisons are made. If the characters are different, the intal with the character of higher ascii value is the bigger intal and corresponding value is returned. If all the characters are same, 0 is returned.
+    intal_diff :
+        If both intals are same, "0" is returned. Otherwise the process is slightly similar to additoion. We subtract smaller intal from bigger intal. If the first digit is lesser than the other, we add 10 to the first digit and perform subtraction and set borrow as 1. Otherwise, the digits are just subtracted (along with the borrow). The remaining digits are also subtracted with borrow and stored in result. The leading zeros are stripped if present. result is returned.
+    intal_multiply : 
+        The process used while performing multiplications on paper is simulated. Ever digit is cosidered and multiplied and added with carry. These sums are stored in result. The leading zeros are sstripped if present and result is returned.
+    intal_mod : 
+        We perform long division and return the remainder. To perform long division, the first few digits of dividend are chosen such that they are bigger than or equal to divisor. They then undergo repeated subtraction (intal2 is subtracted from the dividend) until it is smaller than intal2. After all the digits of intal1 are considered, the remainder is returned.
+    intal_pow :
+        If n is 0, "1" is returned. If intal1 is "0", "0" is returned.Let intial value of "base" be intal1 and "res" be "1". If n is even, intal1 is squared and n is halved. If n is odd, the result is  multiplied with base and base is squared; n is subtracted by 1 and halved. This repeats until n becomes <= 0. The res will be returned.
+    intal_gcd : 
+        If both intals are 0, "0" is returned. If one of the intals is "0", the other intal value is copied and returned. Else, Enhanced Euclid algorithm for gcd is used. Let "a" be intal1 abd "b" be intal2. Until both a nad b become equal ,a is replaced by a%b and b is replaced by a. When they become equal, a is returned.
+    intal_fibonacci : 
+        a, b and c are intialised with "0", "1" and "1" respectively. If n is 0 or 1, a or b is returned respectively. Otherwise, initialse i with 2. Until i becomes >= n, store the sum of a and b, assign b to a, c to b and the sum to c. Return c in the end.
+    intal_factorial : 
+        If n is 0 or 1, "1" is returned. Otherwise we find the product of the integers from 2 to n and return that product.
+    intal_bincoeff :
+        if k > n/2, k is replaced with n-k because C(n, k) = C(n, n-k). We use the formula C(n, k) = C(n-1, k) + C(n-1, k-1). We use DP table to store the values of the previous bincoeff values. We use a window of size k only. After free all the intals in the table and the table itself, the result is returned (dp[k]).
+    intal_max, intal_min :
+        Very simple functions. The first intal os assumed to be min or max. We traverse through the other elements. If we find that to be lesser than (or greater than) the previous min (or max) value, the min (or max) is updated. This is returned.
+    intal_search :
+        We traverse through the array of intals from beginning. If we find a matching intal, the index is returned. The intal is not found in the entire array, -1 is returned.
+    intal_sort : 
+        merge sort algorithm is implemented. This is a divide and conquer algorithm. The arrays are split and sorted recursively. The array are continuosly split until a single element is left. After that merging of the arrays begins which happens by comparison of elements.
+    intal_binsearch : 
+        Implements binary search algorithm. intially low is 0 and high is n - 1. As long as low is <= high, mid is calculated and the intal at that index is compared with key. If they are equal, we traverse to the left till as long as we keep finding the making intals because we have to return the index of the first occurrence. The index is then returned. If arr[mid] > key, high is replaced by mid - 1. Otherwise low is replaced by mid + 1.
+    intal_coin_row_problem : 
+        Solves the coin row problen using dynamic programming. a0 and a1 are initialised with 0 and arr[0] respectively. If n is 0, a0 is returned. If n is 1, a1 is returned. Otherwise a2 is calculate as max("coin value" + a0, a1). a0 value is replaced by that of a1 and a1 by that of a2. This repeats n times. a2 is then returned.
+
+FUTURE WORK : 
+    Would like to consider negative intals too.
+    I personally didn't consider that the intals cannot be longer than 1000 digits. So I wouldn't have any problem even if intals were much longer.
