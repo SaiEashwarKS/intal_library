@@ -35,6 +35,6 @@ APPROACH:
     intal_coin_row_problem : 
         Solves the coin row problen using dynamic programming. a0 and a1 are initialised with 0 and arr[0] respectively. If n is 0, a0 is returned. If n is 1, a1 is returned. Otherwise a2 is calculate as max("coin value" + a0, a1). a0 value is replaced by that of a1 and a1 by that of a2. This repeats n times. a2 is then returned.
 
-FUTURE WORK : 
+FUTURE WORK: 
     Would like to consider negative intals too.
     I personally didn't consider that the intals cannot be longer than 1000 digits. So I wouldn't have any problem even if intals were much longer.
