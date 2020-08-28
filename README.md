@@ -48,38 +48,54 @@ You are allowed to use the library functions from the following header files.
 Do not include and use any other third-party library functions. Not even math.h functions. The library functions that are very close to the functions of intal are NOT allowed to be used. So, do NOT use qsort() and bsearch() declared in stdlib.h. Other than the definitions of the functions declared in the header file, you can have your own helper functions. Make sure to keep the helper functions by making them “static”. I hope you know when we need static functions in C (https://www.tutorialspoint.com/static-functions-in-c). That way your helper functions won’t name conflict with any functions used by the test functions we are going to use for the assessment.
 
 FAQs
-    1. Is there any restriction on the use of macros for example #define MAX (for finding the max of two elements)?
+1. Is there any restriction on the use of macros for example #define MAX (for finding the max of two elements)?
+        
         a. There are no such restrictions. Make sure you write your own macros, don’t use third-party code.
-    2. Can we use typedef in our program at a global level?
+2. Can we use typedef in our program at a global level?
+        
         a. I don’t think there would be any issues. At the moment, I’m not entirely sure of any name conflicts with the tests.
         b. It is alright to have struct definitions even though there is a slight chance of conflict with a similar struct in the test file. We are going to avoid having struct definitions in the test file for this purpose.
-    3. Can we use int64_t, int32_t  and other fixed sized types, defined in the <inttypes.h> and <stdint.h> library of C99, for our project to get fixed-sized integers?
+3. Can we use int64_t, int32_t  and other fixed sized types, defined in the <inttypes.h> and <stdint.h> library of C99, for our project to get fixed-sized integers?
+        
         a. As you are not allowed to the mentioned header files, you don’t get to use those data types. My suggestion is, avoid C99 and stick to basic functionalities of ANSI C level (aka C90).
-    4. Do we have any time/space constraints other than those specified in the comments of the intal.h file?
+4. Do we have any time/space constraints other than those specified in the comments of the intal.h file?
+        
         a. Some hints are given in the intal.h itself, which is mostly at the asymptotic complexity level. Memory leaks are discouraged anyway. I don’t have a well-defined limitation in terms of absolute time and space limitations at the moment. Try to implement a reasonably good algorithm for the problem without bugs.
-    5. Is it safe to assume in intal_diff function that intal1 >= intal2?
+5. Is it safe to assume in intal_diff function that intal1 >= intal2?
+        
         a. No. The difference is always a nonnegative integer. It is essentially the absolute_value_of(intal1 - intal2).
-    6. For all the functions can we assume that the inputs have no preceding '0's or should we right strip the inputs as well?
+6. For all the functions can we assume that the inputs have no preceding '0's or should we right strip the inputs as well?
+        
         a. There won’t be any leading zeros in the arguments passed by the test functions. The integer zero is, however, will be “0”.
-    7. Will intal_multiply() accept an O(n^2) solution or it has to be the Karatsuba algorithm?
+7. Will intal_multiply() accept an O(n^2) solution or it has to be the Karatsuba algorithm?
+        
         a. An O(n^2) solution is acceptable. I feel the Karatsuba algorithm is too much to ask for! Let me know if you have implemented the Karatsuba algorithm.
-    8. Could we get more edge cases in intal_sampletestcase.c to make sure our implementation guarantees to pass all the hidden test cases?
+8. Could we get more edge cases in intal_sampletestcase.c to make sure our implementation guarantees to pass all the hidden test cases?
+        
         a. No, sample tests are meant for understanding the problem along with a sanity check in terms of checking for compilation errors and making at least one call to each function. I’m not planning to cover all the edge cases which are going to be tested later in the assessment. You should play with the sample test file to test your code for the edge cases.
-    9. Can we use any library functions declared in the allowed header files like strtol(), qsort() and bsearch() declared in the stdlib.h?
+9. Can we use any library functions declared in the allowed header files like strtol(), qsort() and bsearch() declared in the stdlib.h?
+        
         a. The library functions that are very close to the functions of intal are NOT allowed to be used. So, do NOT use qsort() and bsearch() declared in stdlib.h.
         b. As qsort() and bsearch() are too nearer to the problem you are solving, avoid using them. However, strtol() is not much of an use for you as it does not handle integers of arbitrary length.
-    10. Coin Row Problem: It is stated in the question that it should be implemented using Dynamic Programming. But it also mentions an O(1) space constraint. Is there a way to implement DP with O(1) space and is it necessary to?
+10. Coin Row Problem: It is stated in the question that it should be implemented using Dynamic Programming. But it also mentions an O(1) space constraint. Is there a way to implement DP with O(1) space and is it necessary to?
+        
         a. An intal itself takes a variable space (upto 1000 chars). DP method that uses just a constant width window of the DP table needs only O(1) intals to be stored at any point of time. If you keep the whole DP table, it consumes an extra space of O(n) intals.
-    11. Do we need to consider the case where the final answer exceeds a 1000 digits? If so, what are we supposed to do?
+11. Do we need to consider the case where the final answer exceeds a 1000 digits? If so, what are we supposed to do?
+        
         a. You don’t have to handle such cases. It is guaranteed that the inputs never expect an answer crossing the 1000 digit limit.
-    12. Is it possible to design an algorithm for the modulus operation in O(log intal1) time? Does it not also depend on intal2? If we created an algorithm to perform long division the way we did in high school and then get the remainder, would that suffice?
+12. Is it possible to design an algorithm for the modulus operation in O(log intal1) time? Does it not also depend on intal2? If we created an algorithm to perform long division the way we did in high school and then get the remainder, would that suffice?
+        
         a. Let me compare the O(log intal1) method with the O(intal1 / intal2) method. The O(intal1 / intal2) method works this way. Let r be intal1. Keep subtracting intal2 from r until r < intal2. The r you get is the answer. The value of r starts from intal1 and in each iteration r reduces by intal2. Therefore, the method takes O(intal1 / intal2) number of intal subtractions. This method will exceed the time limit in cases like the one in a sample test case. I was hinting on performing only O(log intal1) number of intal subtractions. 
         b. The long division method (high school method) may work, but it mostly depends on how you manage intal subtractions there.
-    13. For the sorting function, to improve the performance can we only swap the pointers addresses and not copy the strings from one position to another?
+13. For the sorting function, to improve the performance can we only swap the pointers addresses and not copy the strings from one position to another?
+        
         a. You are expected to swap or move only the pointers, not copying the char strings around.
-    14. I have made sure intal_bincoeff(1000, 900) takes much less time than intal_bincoeff(1000, 500). But, intal_bincoeff(1000, 500) still takes more than one second. Does it exceed the time limit?
+14. I have made sure intal_bincoeff(1000, 900) takes much less time than intal_bincoeff(1000, 500). But, intal_bincoeff(1000, 500) still takes more than one second. Does it exceed the time limit?
+        
         a. intal_bincoeff(1000, 500) could exceed the time limit if we give that as a test. We are not going to give tests that take more time for an efficient implementation. There will be tests like intal_bincoeff(1000, 900) that are expected to run fast in an efficient implementation. If your implementation takes more time for that, we consider that as the time limit exceeded (TLE).
-    15. Is it alright to modify the array of intals as a parameter?
+15. Is it alright to modify the array of intals as a parameter?
+        
         a. intal_sort() expects you to sort them in-place. Other than intal_sort(), no other function expects you to modify the array. Treat it as immutable. 
-    16. What does it mean by a O(log intal1) time taking algorithm for the intal_mod()?
+16. What does it mean by a O(log intal1) time taking algorithm for the intal_mod()?
+        
         a. I have heard of a method in which you keep subtracting intal2 from intal1 until intal1 is less than intal2. The resulting intal1 is the expected answer. The number of subtractions it takes is intal1/intal2. That is what I meant by O(intal1/intal2) number of intal subtractions, which may exceed the time limit (Eg: intal1 = "1234512345123451234512345" and intal2 = “12”). If you can reduce to O(log intal1) number of intal subtractions, it is most likely going to be within the time limit.
